@@ -1,0 +1,42 @@
+\ProvidesPackage{luaBridge}
+\RequirePackage{luapackageloader}
+\RequirePackage{luacode}
+\providecommand{\bridgePath}{\packagePath/luaBridge/LuaBridge/bin}
+\directlua{
+    bridgePath = '\bridgePath'..'/python.so'
+    package.cpath = bridgePath..';'..package.cpath
+    python = require 'python'
+    pg = python.globals()
+    python.execute("import os")
+    python.execute("import sys")
+    python.execute("from pathlib import Path")
+    pyPath = pg.Path
+    function pyPathAdd(path, item)
+        local path = path
+        if path == 'path' then
+            path = ''
+        end
+        pg.modPath = path
+        print(path)
+        python.execute("sys.path.append(modPath)")
+        return path
+    end
+}
+\newcommand\pythonImport[2][path]{
+    \directlua{
+        local path = pyPathAdd([[#1]])
+        python.execute("import "..[[#2]])
+    }
+}
+\newcommand\pythonImportAs[3][path]{
+    \directlua{
+        local path = pyPathAdd([[#1]], [[#2]])
+        python.execute("import "..[[#2]].." as "..[[#3]])
+    }
+}
+\newcommand\pythonImportFrom[3][path]{
+    \directlua{
+        local path = pyPathAdd([[#1]], [[#2]])
+        python.execute("from "..[[#2]].." import "..[[#3]])
+    }
+}

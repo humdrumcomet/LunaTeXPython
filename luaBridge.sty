@@ -3,7 +3,7 @@
 \RequirePackage{luacode}
 \providecommand{\bridgePath}{\packagePath/luaBridge/LuaBridge/bin}
 \directlua{
-    luaBridge = require('\bridgePath' .. '/luaBridge/luaBridge')
+    luaBridge = require('\packagePath' .. '/luaBridge/luaBridge')
     bridgePath = '\bridgePath'..'/python.so'
     package.cpath = bridgePath..';'..package.cpath
     python = require 'python'

@@ -3,20 +3,15 @@
 \RequirePackage{luacode}
 \providecommand{\bridgePath}{\packagePath/luaBridge/LuaBridge/bin}
 \directlua{
-    luaBridge = require('\packagePath' .. '/luaBridge/luaBridge')
     bridgePath = '\bridgePath'..'/python.so'
     package.cpath = bridgePath..';'..package.cpath
-    python = require 'python'
-    pg = python.globals()
-    python.execute("import os")
-    python.execute("import sys")
-    python.execute("from pathlib import Path")
-    pyPath = pg.Path
+    luaBridge = require('\packagePath' .. '/luaBridge/luaBridge')
+    pythonSetup()
 }
 \newcommand\pythonImport[2][path]{
     \directlua{
         local path = pyPathAdd([[#1]])
-        python.execute("import "..[[#2]])
+        python.import([[#2]])
     }
 }
 \newcommand\pythonImportAs[3][path]{

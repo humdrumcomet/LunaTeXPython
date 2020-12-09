@@ -24,7 +24,7 @@ function itPyObj(pyObj)
     local index = -1
     local count = math.floor(pb.len(pyObj))
     local keyList = ''
-    if objType == 'dict' then 
+    if string.match(string.lower(objType), 'dict') then 
         keyList = pb.list(pyObjAttr.keys())
     end
     
@@ -35,7 +35,7 @@ function itPyObj(pyObj)
     return function()
         index = index+1
         if index <= count then
-            if objType == 'dict' then
+            if string.match(string.lower(objType), 'dict') then
                 return pyObj[keyList[index]]
             else
                 return pyObj[index]
@@ -50,18 +50,17 @@ function itPyPair(pyObj)
     local index = -1
     local count = math.floor(pb.len(pyObj))
     local keyList = ''
-    if objType == 'dict' then 
+    if string.match(string.lower(objType), 'dict') then 
         keyList = pb.list(pyObjAttr.keys())
     end
 
     if string.match(objType, 'ndarray') then
         pyObj = pyObjAttr.tolist()
     end
-    
     return function()
         index = index+1
         if index <= count-1 then
-            if objType == 'dict' then
+            if string.match(string.lower(objType), 'dict') then
                 return keyList[index], pyObj[keyList[index]]
             else
                 return index, pyObj[index]

@@ -18,6 +18,7 @@ function pyPathAdd(path, item)
     python.execute("sys.path.append(modPath)")
     return path
 end
+
 function itPyObj(pyObj)
     local pyObjAttr = python.asattr(pyObj)
     local objType = pb.type(pyObj).__name__
@@ -67,4 +68,8 @@ function itPyPair(pyObj)
             end
         end
     end
+end
+
+function pySlice(pyObj)
+    return python.eval(pyObj)
 end

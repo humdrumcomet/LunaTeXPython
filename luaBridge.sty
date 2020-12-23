@@ -3,6 +3,9 @@
 \RequirePackage{luacode}
 \providecommand{\bridgePath}{\packagePath/luaBridge/LuaBridge/bin}
 \directlua{
+    f = kpse.find_file('python')
+    print('kpse test')
+    print(f)
     bridgePath = '\bridgePath'..'/python.so'
     package.cpath = bridgePath..';'..package.cpath
     luaBridge = require('\packagePath' .. '/luaBridge/luaBridge')

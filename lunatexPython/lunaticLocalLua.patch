@@ -1,0 +1,20 @@
+--- lunatic-python/CMakeLists.txt	2020-12-29 17:48:49.206266800 -0500
++++ lunatic-python-new/CMakeLists.txt	2020-11-12 12:03:25.000000000 -0500
+@@ -7,8 +7,8 @@
+ 
+ project(Lunatic)
+ 
+-find_package(Lua        5.1 REQUIRED)
+-find_package(PythonLibs 2.7 REQUIRED)
++#find_package(Lua        5.1 REQUIRED)
++find_package(PythonLibs 3 REQUIRED)
+ 
+ 
+ add_subdirectory(src)
+@@ -27,5 +27,5 @@
+                             PREFIX "")
+ endif (WIN32)
+ 
+-target_link_libraries(lua     ${LUA_LIBRARIES} ${PYTHON_LIBRARIES})
++target_link_libraries(lua     ${CMAKE_BINARY_DIR}/lua-5.3.6/install/lib/liblua.so ${PYTHON_LIBRARIES})
+ target_link_libraries(python  ${LUA_LIBRARIES} ${PYTHON_LIBRARIES})

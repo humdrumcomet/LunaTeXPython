@@ -1,0 +1,30 @@
+\ProvidesPackage{lunatexPython}
+\RequirePackage{luapackageloader}
+\RequirePackage{luacode}
+
+\directlua{
+    local sourceFile = kpse.find_file('luaBridge.sty')
+    local packagePath = string.match(sourceFile, '(.*/)')
+    local bridgePath = packagePath..'python.so'
+    package.cpath = bridgePath..';'..package.cpath
+    luaBridge = require(packagePath .. 'lunatexPython')
+    pythonSetup()
+}
+\newcommand\pythonImport[2][path]{
+    \directlua{
+        local path = pyPathAdd([[#1]])
+        python.import([[#2]])
+    }
+}
+\newcommand\pythonImportAs[3][path]{
+    \directlua{
+        local path = pyPathAdd([[#1]], [[#2]])
+        python.execute("import "..[[#2]].." as "..[[#3]])
+    }
+}
+\newcommand\pythonImportFrom[3][path]{
+    \directlua{
+        local path = pyPathAdd([[#1]], [[#2]])
+        python.execute("from "..[[#2]].." import "..[[#3]])
+    }
+}

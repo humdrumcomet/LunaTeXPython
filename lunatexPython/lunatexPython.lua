@@ -1,4 +1,5 @@
 function pythonSetup()
+    print(package.cpath)
     python = require 'python'
     pg = python.globals()
     python.execute("import os")

@@ -18,3 +18,12 @@
 -target_link_libraries(lua     ${LUA_LIBRARIES} ${PYTHON_LIBRARIES})
 +target_link_libraries(lua     ${CMAKE_BINARY_DIR}/lua-5.3.6/install/lib/liblua.so ${PYTHON_LIBRARIES})
  target_link_libraries(python  ${LUA_LIBRARIES} ${PYTHON_LIBRARIES})
+--- lunatic-python/src/CMakeLists.txt	2020-12-29 17:48:49.206266800 -0500
++++ lunatic-python-new/src/CMakeLists.txt	2020-11-12 12:03:25.000000000 -0500
+@@ -3,7 +3,7 @@
+                           POSITION_INDEPENDENT_CODE TRUE)
+ 
+-target_include_directories(src PRIVATE ${LUA_INCLUDE_DIR} ${PYTHON_INCLUDE_DIR})
++target_include_directories(src PRIVATE ${CMAKE_BINARY_DIR}/lua-5.3.6/install/include ${PYTHON_INCLUDE_DIR})
+ 
+ target_compile_definitions(src PRIVATE LUA_LIB)

@@ -1,5 +1,4 @@
 function pythonSetup()
-    print(package.cpath)
     python = require 'python'
     pg = python.globals()
     python.execute("import os")
@@ -10,6 +9,7 @@ function pythonSetup()
     pyPath = pg.Path
     pb = python.builtins()
 end
+
 function pyPathAdd(path, item)
     local path = path
     if path == 'path' then
@@ -72,6 +72,20 @@ function itPyPair(pyObj)
 end
 
 function pySlice(pyStr)
-    --local noTrailing = string.gsub(pyStr, '"$', "")
     return python.eval(pyStr)
 end
+
+function printPyData(tableItems, modifiers)
+    sliced = pySlice(tableItems)
+    modifiers.iterType = 'itPyPair'
+    modifiers.iterAdd = {['itPyPair'] = itPyPair}
+    printData(sliced, modifiers)
+end
+
+function printPyTable(tableItems, modifiers)
+    sliced = pySlice(tableItems)
+    modifiers.iterType = 'itPyPair'
+    modifiers.iterAdd = {['itPyPair'] = itPyPair}
+    printTable(sliced, modifiers)
+end
+

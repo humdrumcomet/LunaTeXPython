@@ -6,9 +6,6 @@
     local sourceFile = kpse.find_file('lunatexPython.sty')
     local packagePath = string.match(sourceFile, '(.*/)')
     local bridgePath = packagePath..'bin/python.so'
-    print('-----------Paths------------')
-    print(packagePath)
-    print(bridgePath)
     package.cpath = bridgePath..';'..package.cpath
     luaBridge = require(packagePath .. 'lunatexPython')
     pythonSetup()
@@ -29,5 +26,18 @@
     \directlua{
         local path = pyPathAdd([[#1]], [[#2]])
         python.execute("from "..[[#2]].." import "..[[#3]])
-    }
+    }%
+}
+\newcommand\printPyData[2][empty]{
+    \directlua{
+        local optsTable = optsToTable([[#1]])
+        printPyData("#2", optsTable)
+    }%
+}
+
+\newcommand\printPyDataTable[2][empty]{
+    \directlua{
+        local optsTable = optsToTable([[#1]])
+        printPyTable("#2", optsTable)
+    }%
 }

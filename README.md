@@ -13,13 +13,11 @@ will work without too much effort on any unix based system).
 ## Requirements
 This package requires the following LuaLaTeX packages:
 
-`
+```
 luapackageloader
-
 luacode
-
 luaHelper
-`
+```
 
 Both `luapackageloader` and `luacode` are available in standard tex distributions but as of writing
 `luaHelper` must be installed manually and can be found [here](https://github.com/humdrumcomet/luahelper).

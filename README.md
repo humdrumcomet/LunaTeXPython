@@ -39,17 +39,13 @@ Next, using bash (or similar shell) navigate into a folder you plan on storing t
 package (DO NOT clone into the texmf folder. This will significantly slow down all latex compilations 
 as KSPE will try to traverse the .git directory) execut the following commands:
 
-`
+```
 $ git clone https://github.com/humdrumcomet/lunatexpython
-
 $ cd lunatexPython
-
 $ bash setup.sh
-
 $ ln -s lunatexPython ~/texmf/tex/
-
 $ texhash
-`
+```
 
 
 ## Basic Usage

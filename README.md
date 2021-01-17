@@ -1,4 +1,4 @@
-# LunaTeX Python - The LuaTeX Python Bridge
+# LunaTeXPython - The LuaTeX Python Bridge
 ## Introduction
 This is a LuaLaTeX package that makes use of the lunatic-python package currently hosted and maintained
 by github user [bastibe](https://github.com/bastibe/lunatic-python).
